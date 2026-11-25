@@ -23,7 +23,7 @@ main{max-width:1180px;margin:auto;padding:32px 22px 70px}.hero{text-align:center
 .composer{margin:10px 13px 13px;border:1px solid var(--line);background:#0d1020;border-radius:18px;padding:8px;display:flex;gap:7px;align-items:flex-end}.composer:focus-within{border-color:#8b6cff;box-shadow:0 0 0 3px #8b6cff22}.composer textarea{flex:1;min-width:0;max-height:150px;resize:none;background:none;border:0;outline:0;color:var(--fg);padding:9px 5px;line-height:1.45}.composer textarea::placeholder{color:#78819e}.iconbtn{width:39px;height:39px;border:1px solid var(--line);border-radius:12px;background:#ffffff08;color:#dfe3f7;flex:none}.send{width:42px;height:42px;border:0;border-radius:13px;background:var(--grad);color:white;font-weight:900;flex:none}.hint{padding:0 17px 11px;color:#7f88a4;font-size:10px}
 .side{display:flex;flex-direction:column;gap:12px}.side-card{border:1px solid var(--line);background:var(--panel);border-radius:18px;padding:15px}.side-card h3{font-size:13px;margin:0 0 10px}.side-card p{color:var(--muted);font-size:12px;margin:0 0 10px}.side-card .btn{width:100%;margin-top:6px;text-align:left;font-size:12px}.feature{display:flex;gap:9px;margin:11px 0;color:#cbd1e7;font-size:12px}.feature span{color:var(--cyan)}
 footer{text-align:center;color:#737d99;font-size:11px;padding:28px}
-.modal{position:fixed;inset:0;z-index:30;background:#03050bc9;backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;padding:15px}.modal.open{display:flex}.dialog{width:min(1050px,100%);height:min(850px,95vh);background:#0c1020;border:1px solid var(--line);border-radius:18px;display:flex;flex-direction:column;overflow:hidden}.dialog-head{display:flex;gap:8px;align-items:center;padding:10px 13px;border-bottom:1px solid var(--line);flex-wrap:wrap}.dialog-head b{margin-right:auto}.preview-frame{flex:1;min-height:0;background:white}.preview-frame iframe{width:100%;height:100%;border:0;background:white}.dialog-frame.mobile iframe{width:min(390px,100%);display:block;margin:auto;border-left:1px solid #ddd;border-right:1px solid #ddd}
+.modal{position:fixed;inset:0;z-index:30;background:#03050bc9;backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;padding:15px}.modal.open{display:flex}.dialog{width:min(1050px,100%);height:min(850px,95vh);background:#0c1020;border:1px solid var(--line);border-radius:18px;display:flex;flex-direction:column;overflow:hidden}.dialog-head{display:flex;gap:8px;align-items:center;padding:10px 13px;border-bottom:1px solid var(--line);flex-wrap:wrap}.dialog-head b{margin-right:auto}.preview-frame{flex:1;min-height:0;background:white}.preview-frame iframe{width:100%;height:100%;border:0;background:white}.preview-frame.mobile iframe{width:min(390px,100%);display:block;margin:auto;border-left:1px solid #ddd;border-right:1px solid #ddd}
 .settings{width:min(500px,100%);height:auto;max-height:90vh;padding:20px;overflow:auto}.settings h2{margin:0 0 7px}.settings label{display:block;color:#b8c0da;font-size:12px;margin:14px 0 6px}.settings input,.settings select{width:100%;background:#080b16;color:white;border:1px solid var(--line);border-radius:10px;padding:11px}.settings small{display:block;color:var(--muted);font-size:11px;margin-top:7px}.setting-actions{display:flex;gap:8px;margin-top:18px;justify-content:flex-end}
 .toast{position:fixed;z-index:50;bottom:20px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#f1f2ff;color:#101323;padding:10px 16px;border-radius:99px;font-size:12px;transition:.2s;max-width:90vw;text-align:center}.toast.show{opacity:1;transform:translate(-50%,0)}
 @media(max-width:850px){.workspace{grid-template-columns:1fr}.side{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.chat{height:74vh;min-height:530px}.navlinks a{display:none}}
@@ -53,7 +53,7 @@ footer{text-align:center;color:#737d99;font-size:11px;padding:28px}
 </main>
 <footer>© 2026 Mega.AI · Сделано для создания больших идей</footer>
 <div class="modal" id="preview"><div class="dialog"><div class="dialog-head"><b>▶ Предпросмотр сайта</b><button class="btn small" id="mobilePreview">📱 Мобильный вид</button><button class="btn small" id="downloadSite">⬇ Скачать HTML</button><button class="btn small" id="closePreview">✕ Закрыть</button></div><div class="preview-frame" id="previewFrame"><iframe id="frame" title="Предпросмотр сайта" sandbox="allow-scripts allow-forms allow-modals allow-popups"></iframe></div></div></div>
-<div class="modal" id="settings"><div class="dialog settings"><h2>Настройки Mega.AI</h2><p style="color:var(--muted);font-size:12px">Подключение к Pollinations API. Получи ключ на <a href="https://enter.pollinations.ai/" target="_blank" rel="noopener">enter.pollinations.ai</a>.</p><label for="apiKey">API-ключ</label><input id="apiKey" type="password" autocomplete="off" placeholder="Вставь свой ключ (Bearer token)"><small>Ключ сохраняется только в localStorage этого браузера. Не используй этот способ для публичного сайта: посетители смогут увидеть ключ в своём браузере. Для продакшена нужен backend.</small><label for="endpoint">API endpoint</label><input id="endpoint" value="https://gen.pollinations.ai/v1/chat/completions"><div class="setting-actions"><button class="btn" id="clearKey">Удалить ключ</button><button class="btn" id="cancelSettings">Отмена</button><button class="btn primary" id="saveSettings">Сохранить</button></div></div></div>
+<div class="modal" id="settings"><div class="dialog settings"><h2>Настройки Mega.AI</h2><p style="color:var(--muted);font-size:12px">Подключение к Pollinations API. Получи ключ на <a href="https://enter.pollinations.ai/" target="_blank" rel="noopener">enter.pollinations.ai</a>.</p><label for="apiKey">API-ключ</label><input id="apiKey" type="password" autocomplete="off" placeholder="Вставь свой ключ (Bearer token)"><small>Ключ хранится в localStorage этого браузера. Не публикуй этот HTML с секретным sk_-ключом: посетители смогут его извлечь. Для публичного проекта нужен серверный backend/proxy. Некоторые модели требуют платный баланс; при такой ошибке Mega.AI попробует GPT-5.4, затем DeepSeek.</small><label for="endpoint">API endpoint</label><input id="endpoint" value="https://gen.pollinations.ai/v1/chat/completions"><div class="setting-actions"><button class="btn" id="clearKey">Удалить ключ</button><button class="btn" id="cancelSettings">Отмена</button><button class="btn primary" id="saveSettings">Сохранить</button></div></div></div>
 <div class="toast" id="toast"></div>
 <script>
 (() => {
@@ -119,7 +119,7 @@ async function readStream(response,onDelta){
 }
 async function callAI(onUpdate){
  if(!apiKey){showSettings();throw new Error('Сначала добавь API-ключ в настройках.')}
- const model=$('#model').value;
+ const selectedModel=$('#model').value;
  const msgs=getMessages();
  const userIndex=msgs.length-1;
  if(attachments.some(a=>a.type==='image')){
@@ -128,12 +128,36 @@ async function callAI(onUpdate){
   msgs[userIndex]={role:'user',content:parts};
  }
  controller=new AbortController();
- const response=await fetch(endpoint,{method:'POST',signal:controller.signal,headers:{'Content-Type':'application/json','Authorization':'Bearer '+apiKey},body:JSON.stringify({model,messages:msgs,stream:true,temperature:0.65,max_tokens:12000})});
- if(!response.ok){let detail='';try{const j=await response.json();detail=j.error?.message||j.message||''}catch{};throw new Error(`API вернул HTTP ${response.status}${detail?': '+detail:''}`)}
- const type=response.headers.get('content-type')||'';
- if(type.includes('text/event-stream')&&response.body)return await readStream(response,onUpdate);
- const data=await response.json();const text=parseResponse(data);if(!text)throw new Error('ИИ вернул пустой ответ. Попробуй другую модель.');onUpdate(text);return text;
+ const headers={'Content-Type':'application/json','Authorization':'Bearer '+apiKey};
+ async function requestModel(model){
+  const response=await fetch(endpoint,{method:'POST',signal:controller.signal,headers,body:JSON.stringify({model,messages:msgs,stream:true,temperature:0.65,max_tokens:12000})});
+  if(!response.ok){let detail='';try{const j=await response.json();detail=j.error?.message||j.message||j.detail||JSON.stringify(j)}catch{try{detail=await response.text()}catch{}}
+   const err=new Error(`API вернул HTTP ${response.status}${detail?': '+detail:''}`);err.status=response.status;err.detail=detail;throw err;
+  }
+  const type=response.headers.get('content-type')||'';
+  if(type.includes('text/event-stream')&&response.body)return await readStream(response,onUpdate);
+  const data=await response.json();const answer=parseResponse(data);if(!answer)throw new Error('ИИ вернул пустой ответ. Попробуй другую модель.');onUpdate(answer);return answer;
+ }
+ try{return await requestModel(selectedModel)}
+ catch(error){
+  if(error.name==='AbortError')throw error;
+  const detail=String(error.detail||error.message||'');
+  const needsPaid=/not enough credits|insufficient credits|paid balance|low balance|top.?up|balance required/i.test(detail);
+  const safeFallbacks=['openai/gpt-5.4','deepseek/deepseek-v4-flash'].filter(m=>m!==selectedModel);
+  if(!needsPaid||!safeFallbacks.length)throw error;
+  let lastError=error;
+  for(const fallback of safeFallbacks){
+   try{
+    toast(`${modelLabel(selectedModel)} требует платный баланс. Пробую ${modelLabel(fallback)}…`);
+    const answer=await requestModel(fallback);
+    toast(`Готово: ответ получен через ${modelLabel(fallback)}. Для ${modelLabel(selectedModel)} нужен платный баланс.`);
+    return answer;
+   }catch(nextError){if(nextError.name==='AbortError')throw nextError;lastError=nextError;}
+  }
+  throw new Error('Выбранная модель требует платный баланс, а резервные модели тоже не ответили. '+(lastError.message||''));
+ }
 }
+function modelLabel(id){return ({'openai/gpt-5.4':'GPT-5.4','qwen/qwen3-coder-30b-a3b-instruct':'Qwen Coder','anthropic/claude-sonnet-4.6':'Claude Sonnet','google/gemini-3.7-flash':'Gemini Flash','deepseek/deepseek-v4-flash':'DeepSeek'})[id]||id}
 function fileToDataURL(file){return new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=()=>reject(new Error('Не удалось прочитать изображение'));r.readAsDataURL(file)})}
 function setBusy(value){busy=value;sendBtn.textContent=value?'■':'➤';sendBtn.title=value?'Остановить':'Отправить';$('#model').disabled=value;$('#newChat').disabled=false;setStatus(value?'думаю…':'готов',!value)}
 function codeBlocks(text){const out=[];const re=/```([^\n`]*)\n?([\s\S]*?)```/g;let m;while((m=re.exec(text)))out.push({lang:(m[1]||'').trim().toLowerCase(),code:m[2].replace(/\n$/,'')});return out}
