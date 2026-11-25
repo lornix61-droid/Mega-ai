@@ -38,7 +38,7 @@ footer{text-align:center;color:#737d99;font-size:11px;padding:28px}
 <section class="hero"><div class="eyebrow"><i class="live"></i> ИИ-помощник нового поколения</div><h1>Создавай больше.<br><span>Вместе с Mega.AI.</span></h1><p>Код, полноценные сайты, дизайн, анализ файлов и идеи. Выбери режим, опиши задачу — и работай над результатом прямо в чате.</p></section>
 <section class="workspace" id="assistant">
 <div class="chat">
-<div class="chat-head"><span class="orb" style="width:22px;height:22px"></span><strong>Mega.AI</strong><span class="status" id="status">● готов</span><div class="head-actions"><select class="select" id="model" aria-label="Модель"><option value="openai/gpt-5.4">✨ GPT-5.4 — универсальная</option><option value="qwen/qwen3-coder-30b-a3b-instruct">💻 Qwen Coder — программирование</option><option value="anthropic/claude-sonnet-4.6">🧠 Claude Sonnet — сложные задачи</option><option value="google/gemini-3.7-flash">⚡ Gemini Flash — быстрые ответы</option><option value="deepseek/deepseek-v4-flash">🔍 DeepSeek — рассуждения</option></select><button class="btn small" id="newChat">＋ Новый чат</button></div></div>
+<div class="chat-head"><span class="orb" style="width:22px;height:22px"></span><strong>Mega.AI</strong><span class="status" id="status">● готов</span><span style="font-size:10px;color:var(--muted)" title="Список обновляется из каталога API">LIVE MODELS</span><div class="head-actions"><select class="select" id="model" aria-label="Модель"><option value="openai/gpt-5.4-nano">⚡ GPT-5.4 Nano</option><option value="deepseek/deepseek-v4-flash">🔍 DeepSeek V4 Flash</option><option value="qwen/qwen3-coder-30b-a3b-instruct">💻 Qwen Coder</option><option value="google/gemini-3.7-flash">✨ Gemini Flash</option><option value="openai/gpt-5.4">🧠 GPT-5.4</option></select><button class="btn small" id="newChat">＋ Новый чат</button></div></div>
 <div class="modes" id="modes"><button class="mode active" data-mode="general">💬 Общий</button><button class="mode" data-mode="code">💻 Код</button><button class="mode" data-mode="website">🌐 Создать сайт</button><button class="mode" data-mode="study">🎓 Учёба</button><button class="mode" data-mode="creative">🎨 Креатив</button></div>
 <div id="messages" aria-live="polite"><div class="welcome" id="welcome"><div class="big">✦</div><h2>Привет! Что будем создавать?</h2><p>Я помогу продумать идею, написать код, собрать дизайн и довести проект до рабочего результата.</p><div class="suggestions" id="suggestions"><button class="suggestion">🌐 Сделай современный сайт-портфолио с анимациями</button><button class="suggestion">💻 Напиши полноценную игру на JavaScript</button><button class="suggestion">🔧 Проверь мой код, найди ошибки и исправь</button><button class="suggestion">📱 Создай адаптивный лендинг для стартапа</button></div></div></div>
 <div class="attachments" id="attachments"></div>
@@ -47,13 +47,13 @@ footer{text-align:center;color:#737d99;font-size:11px;padding:28px}
 <aside class="side">
 <div class="side-card"><h3>🚀 Быстрый старт</h3><p>Лучшие результаты получаются, когда ты описываешь цель, стиль, функции и ограничения.</p><button class="btn" data-fill="Создай полноценный адаптивный сайт. Сначала продумай структуру и визуальную концепцию, затем напиши полный рабочий HTML/CSS/JS в одном файле. Добавь выразительный дизайн, мобильную версию, интерактивность, доступность и аккуратные анимации.">✨ Создать сайт под ключ</button><button class="btn" data-fill="Ты senior-разработчик. Проведи ревью моего проекта: найди ошибки, уязвимости и проблемы архитектуры. Затем верни полностью исправленный код и объясни запуск.">🛠 Улучшить мой код</button></div>
 <div class="side-card" id="features"><h3>Возможности</h3><div class="feature"><span>✦</span> Генерация полного кода</div><div class="feature"><span>✦</span> Предпросмотр HTML-сайтов</div><div class="feature"><span>✦</span> Копирование и скачивание</div><div class="feature"><span>✦</span> Изображения и файлы</div><div class="feature"><span>✦</span> Продолжение длинного ответа</div><div class="feature"><span>✦</span> Разные ИИ-модели</div></div>
-<div class="side-card"><h3>🔑 Подключение ИИ</h3><p id="keyState">API-ключ не настроен. Добавь ключ в настройках, чтобы отправлять запросы.</p><button class="btn primary" id="sideSettings">Настроить API →</button><p style="margin-top:10px">API-ключ хранится в localStorage этого браузера. Для публичного сайта используй собственный серверный proxy — не публикуй секрет в HTML.</p></div>
+<div class="side-card"><h3>🔑 Подключение ИИ</h3><p id="keyState">API-ключ не настроен. Добавь ключ в настройках, чтобы отправлять запросы.</p><button class="btn primary" id="sideSettings">Настроить API →</button><p style="margin-top:10px">Сайт не продаёт подписки. Доступ к моделям и возможные расходы зависят от API-провайдера. Для публичного сайта используй серверный proxy: не публикуй секретный ключ в HTML.</p></div>
 </aside>
 </section>
 </main>
 <footer>© 2026 Mega.AI · Сделано для создания больших идей</footer>
 <div class="modal" id="preview"><div class="dialog"><div class="dialog-head"><b>▶ Предпросмотр сайта</b><button class="btn small" id="mobilePreview">📱 Мобильный вид</button><button class="btn small" id="downloadSite">⬇ Скачать HTML</button><button class="btn small" id="closePreview">✕ Закрыть</button></div><div class="preview-frame" id="previewFrame"><iframe id="frame" title="Предпросмотр сайта" sandbox="allow-scripts allow-forms allow-modals allow-popups"></iframe></div></div></div>
-<div class="modal" id="settings"><div class="dialog settings"><h2>Настройки Mega.AI</h2><p style="color:var(--muted);font-size:12px">Подключение к Pollinations API. Получи ключ на <a href="https://enter.pollinations.ai/" target="_blank" rel="noopener">enter.pollinations.ai</a>.</p><label for="apiKey">API-ключ</label><input id="apiKey" type="password" autocomplete="off" placeholder="Вставь свой ключ (Bearer token)"><small>Ключ хранится в localStorage этого браузера. Не публикуй этот HTML с секретным sk_-ключом: посетители смогут его извлечь. Для публичного проекта нужен серверный backend/proxy. Некоторые модели требуют платный баланс; при такой ошибке Mega.AI попробует GPT-5.4, затем DeepSeek.</small><label for="endpoint">API endpoint</label><input id="endpoint" value="https://gen.pollinations.ai/v1/chat/completions"><div class="setting-actions"><button class="btn" id="clearKey">Удалить ключ</button><button class="btn" id="cancelSettings">Отмена</button><button class="btn primary" id="saveSettings">Сохранить</button></div></div></div>
+<div class="modal" id="settings"><div class="dialog settings"><h2>Настройки Mega.AI</h2><p style="color:var(--muted);font-size:12px">Подключение к Pollinations API. Получи ключ на <a href="https://enter.pollinations.ai/" target="_blank" rel="noopener">enter.pollinations.ai</a>.</p><label for="apiKey">API-ключ</label><input id="apiKey" type="password" autocomplete="off" placeholder="Вставь свой ключ (Bearer token)"><small>Ключ хранится в localStorage этого браузера. Не публикуй этот HTML с секретным sk_-ключом: посетители смогут его извлечь. Для публичного проекта нужен серверный backend/proxy. Mega.AI не продаёт подписки и не включает платные функции. Доступность и стоимость конкретной модели определяет внешний API-провайдер и твой ключ.</small><label for="endpoint">API endpoint</label><input id="endpoint" value="https://gen.pollinations.ai/v1/chat/completions"><div class="setting-actions"><button class="btn" id="clearKey">Удалить ключ</button><button class="btn" id="cancelSettings">Отмена</button><button class="btn primary" id="saveSettings">Сохранить</button></div></div></div>
 <div class="toast" id="toast"></div>
 <script>
 (() => {
@@ -61,11 +61,17 @@ footer{text-align:center;color:#737d99;font-size:11px;padding:28px}
 const $ = s => document.querySelector(s);
 const messages = $('#messages'), promptBox = $('#prompt'), sendBtn = $('#send');
 const API_DEFAULT = 'https://gen.pollinations.ai/v1/chat/completions';
-const SYSTEM = `Ты — Mega.AI, сильный универсальный ИИ-ассистент и senior software engineer, UI/UX-дизайнер и технический наставник. Отвечай на языке пользователя. Будь точным, не выдумывай факты и не скрывай ограничения. Если пользователь просит код — выдавай полный, запускаемый, согласованный код без заглушек, пропусков и фраз «остальное аналогично». Продумывай ошибки, крайние случаи, безопасность, доступность и производительность. Если просят изменить существующий файл — возвращай изменённый файл целиком. Для сайтов сначала продумай визуальную концепцию, дизайн-систему, композицию, типографику, цвета, адаптивность и интерактивность; избегай шаблонного вида, пустых секций и бессмысленных градиентов. Сайт должен быть реально рабочим, адаптивным от 360px, с семантическим HTML, доступными элементами, видимым focus, аккуратными анимациями и prefers-reduced-motion. По возможности используй один самодостаточный index.html с CSS и JS внутри. Для предпросмотра обязательно возвращай HTML в одном блоке \`\`\`html. Не используй внешние изображения с ненадёжными URL; делай визуал через CSS, inline SVG или встроенные данные. Перед выдачей мысленно проверь код, связи между элементами, имена селекторов, события и закрытие тегов. Объясняй запуск кратко.`;
+const SYSTEM = `Ты — Mega.AI: сильный универсальный ИИ, senior full-stack инженер, архитектор ПО и арт-директор. Отвечай на языке пользователя.
+ГЛАВНОЕ: выдавай законченный, проверяемый результат, а не общие советы. Для кода указывай стек, структуру, зависимости, запуск и полный код всех изменённых файлов. Не используй заглушки, TODO, "...", пропуски и фразы «остальное аналогично». Большие задачи разбивай на файлы с понятными названиями.
+РАЗРАБОТКА: учитывай обработку ошибок, безопасность, валидацию, производительность, доступность и крайние случаи. Не выдумывай результаты тестов. Если не можешь запустить код, честно скажи, что проверил его статически.
+САЙТЫ: работай как продуктовая команда — UX-исследователь, арт-директор и senior frontend engineer. Продумывай сценарии, уникальную визуальную концепцию, дизайн-токены, сетку, типографику, композицию и контент. Избегай шаблонного вида, бессмысленных градиентов, пустых блоков и одинаковых карточек. Все кнопки, формы, меню и интерактивные элементы должны работать. Обязательно mobile-first, доступность, состояния focus/hover/disabled и prefers-reduced-motion.
+ФОРМАТ САЙТА: если пользователь просит сайт и не дал стек, по умолчанию верни один самодостаточный index.html с CSS и JS внутри. Весь HTML помести в один блок \`\`\`html. Не обрезай код. Сайт должен показывать готовый контент сразу при открытии.
+ПРОВЕРКА: мысленно проверь синтаксис, зависимости, селекторы, обработчики, ссылки, закрытие тегов и адаптивность. Не заявляй, что всё работает, если это не проверено. Если пользователь прислал файлы — опирайся на них и меняй именно их.
+ОБЩЕНИЕ: не задавай лишних вопросов; если можно принять разумное допущение — сделай это и укажи его. Будь конкретным, дружелюбным и профессиональным.`;
 const MODE_PROMPTS = {
  general:'Режим: универсальный помощник. Дай точный и полезный ответ.',
  code:'Режим: senior-разработчик. Сначала определи стек и структуру. Пиши полноценный production-minded код, добавляй обработку ошибок, валидацию и примеры запуска. Не сокращай код.',
- website:'Режим: senior frontend engineer + арт-директор. Создавай визуально выразительные, законченные сайты. Верни один полный самодостаточный index.html в блоке ```html. Обязательно: сильная визуальная иерархия, оригинальная композиция, палитра и дизайн-токены, адаптивность, реальные тексты, работающие интерактивные элементы, мобильная навигация, состояния hover/focus, reduced motion. Не делай пустой/чёрный экран: документ должен содержать видимый контент сразу при открытии. Все кнопки должны работать.',
+ website:'Режим: продуктовая команда — UX-исследователь, арт-директор и senior frontend engineer. Создай завершённый продуктовый сайт, а не шаблон. Продумай сценарии, уникальную визуальную концепцию, дизайн-токены, сетку, типографику, композицию, контент и состояния. Верни полный самодостаточный index.html в одном блоке ```html. Все элементы интерфейса должны работать: меню, кнопки, формы, фильтры, модальные окна и переходы. Сделай адаптивность от 320px, доступность, keyboard navigation, focus-visible и prefers-reduced-motion. Сайт должен показывать готовый контент сразу при открытии.',
  study:'Режим: терпеливый преподаватель. Объясняй по шагам, на понятных примерах, проверяй понимание.',
  creative:'Режим: креативный автор. Предлагай оригинальные решения, избегай клише.'
 };
@@ -82,6 +88,7 @@ $('#settingsBtn').onclick=showSettings;$('#sideSettings').onclick=showSettings;$
 $('#saveSettings').onclick=()=>{apiKey=$('#apiKey').value.trim();endpoint=$('#endpoint').value.trim()||API_DEFAULT;localStorage.setItem('mega_api_key',apiKey);localStorage.setItem('mega_api_endpoint',endpoint);updateKeyState();closeSettings();toast('Настройки сохранены')};
 $('#clearKey').onclick=()=>{apiKey='';localStorage.removeItem('mega_api_key');$('#apiKey').value='';updateKeyState();toast('Ключ удалён')};
 updateKeyState();
+loadModelCatalog();
 function escapeHTML(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function safeUrl(url){try{const u=new URL(url);return ['http:','https:','mailto:'].includes(u.protocol)?u.href:'#'}catch{return '#'}}
 function inlineMD(s){let out=escapeHTML(s);out=out.replace(/`([^`\n]+)`/g,'<code>$1</code>');out=out.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>').replace(/\*([^*\n]+)\*/g,'<em>$1</em>').replace(/~~([^~]+)~~/g,'<del>$1</del>');out=out.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,(_,a,u)=>'<a href="'+safeUrl(u)+'" target="_blank" rel="noopener noreferrer">'+a+'</a>');return out}
@@ -108,56 +115,83 @@ function currentSystem(){return SYSTEM+'\n\n'+MODE_PROMPTS[mode]}
 function getMessages(){return [{role:'system',content:currentSystem()},...history.slice(-24).map(m=>({role:m.role,content:m.content}))]}
 function parseResponse(data){return data?.choices?.[0]?.message?.content ?? data?.choices?.[0]?.delta?.content ?? ''}
 async function readStream(response,onDelta){
+ if(!response.body)throw new Error('Потоковый ответ недоступен. Попробуй другую модель.');
  const reader=response.body.getReader(),decoder=new TextDecoder();let buffer='',full='';
- while(true){const {done,value}=await reader.read();if(done)break;buffer+=decoder.decode(value,{stream:true});const lines=buffer.split(/\r?\n/);buffer=lines.pop()||'';
-  for(const line of lines){const s=line.trim();if(!s.startsWith('data:'))continue;const payload=s.slice(5).trim();if(!payload||payload==='[DONE]')continue;
-   try{const data=JSON.parse(payload);if(data.error)throw new Error(data.error.message||'Ошибка API');const delta=data.choices?.[0]?.delta?.content;if(typeof delta==='string'&&delta){full+=delta;onDelta(full)}else if(Array.isArray(delta)){for(const p of delta)if(p.type==='text'&&p.text){full+=p.text;onDelta(full)}}}catch(e){if(e instanceof SyntaxError)continue;throw e}
-  }
+ const consume=line=>{
+  const s=line.trim();if(!s.startsWith('data:'))return;
+  const payload=s.slice(5).trim();if(!payload||payload==='[DONE]')return;
+  let data;try{data=JSON.parse(payload)}catch{return}
+  if(data.error)throw new Error(data.error.message||'Ошибка API');
+  const delta=data.choices?.[0]?.delta?.content??data.choices?.[0]?.message?.content;
+  if(typeof delta==='string'&&delta){full+=delta;onDelta(full)}
+  else if(Array.isArray(delta))for(const p of delta)if(p?.type==='text'&&p.text){full+=p.text;onDelta(full)}
+ };
+ while(true){
+  const {done,value}=await reader.read();if(done)break;
+  buffer+=decoder.decode(value,{stream:true});
+  const lines=buffer.split(/\r?\n/);buffer=lines.pop()||'';
+  for(const line of lines)consume(line);
  }
- if(buffer.trim().startsWith('data:')){const p=buffer.trim().slice(5).trim();if(p&&p!=='[DONE]'){try{const d=JSON.parse(p);const x=d.choices?.[0]?.delta?.content;if(x){full+=x;onDelta(full)}}catch{}}}
+ buffer+=decoder.decode();if(buffer.trim())consume(buffer);
+ if(!full.trim())throw new Error('ИИ вернул пустой потоковый ответ. Попробуй другую модель.');
  return full;
 }
 async function callAI(onUpdate){
  if(!apiKey){showSettings();throw new Error('Сначала добавь API-ключ в настройках.')}
- const selectedModel=$('#model').value;
- const msgs=getMessages();
- const userIndex=msgs.length-1;
+ const selectedModel=$('#model').value,msgs=getMessages(),userIndex=msgs.length-1;
  if(attachments.some(a=>a.type==='image')){
   const parts=[{type:'text',text:msgs[userIndex].content}];
-  for(const a of attachments.filter(x=>x.type==='image')){const data=await fileToDataURL(a.file);parts.push({type:'image_url',image_url:{url:data}})}
+  for(const a of attachments.filter(x=>x.type==='image'))parts.push({type:'image_url',image_url:{url:await fileToDataURL(a.file)}});
   msgs[userIndex]={role:'user',content:parts};
  }
  controller=new AbortController();
- const headers={'Content-Type':'application/json','Authorization':'Bearer '+apiKey};
- async function requestModel(model){
-  const response=await fetch(endpoint,{method:'POST',signal:controller.signal,headers,body:JSON.stringify({model,messages:msgs,stream:true,temperature:0.65,max_tokens:12000})});
-  if(!response.ok){let detail='';try{const j=await response.json();detail=j.error?.message||j.message||j.detail||JSON.stringify(j)}catch{try{detail=await response.text()}catch{}}
-   const err=new Error(`API вернул HTTP ${response.status}${detail?': '+detail:''}`);err.status=response.status;err.detail=detail;throw err;
+ const candidates=[...new Set([selectedModel,'openai/gpt-5.4-nano','deepseek/deepseek-v4-flash'])].slice(0,3);
+ let lastError;
+ for(let i=0;i<candidates.length;i++){
+  const model=candidates[i];
+  try{
+   const response=await fetch(endpoint,{method:'POST',signal:controller.signal,headers:{'Content-Type':'application/json','Authorization':'Bearer '+apiKey},body:JSON.stringify({model,messages:msgs,stream:true,max_tokens:12000})});
+   if(!response.ok){
+    let detail='';try{const j=await response.json();detail=j.error?.message||j.message||j.detail||JSON.stringify(j)}catch{try{detail=await response.text()}catch{}}
+    const err=new Error(`API вернул HTTP ${response.status}${detail?': '+detail:''}`);err.status=response.status;err.detail=detail;
+    if([400,401,403,404,422].includes(response.status)||/insufficient|not enough credits|paid balance|top.?up|quota exceeded|budget/i.test(detail))throw err;
+    throw err;
+   }
+   const type=response.headers.get('content-type')||'';let answer='';
+   if(type.includes('text/event-stream'))answer=await readStream(response,onUpdate);
+   else{const data=await response.json();answer=parseResponse(data);if(!answer&&typeof data==='string')answer=data;if(!answer)throw new Error('ИИ вернул пустой ответ. Попробуй другую модель.');onUpdate(answer)}
+   if(model!==selectedModel)toast('Ответ получен через резервную модель: '+modelLabel(model));
+   return answer;
+  }catch(error){
+   if(error.name==='AbortError')throw error;lastError=error;
+   const detail=String(error.detail||error.message||'');
+   const retryable=error.status===429||(error.status>=500)||/temporar|timeout|overload|unavailable|network|failed to fetch/i.test(detail);
+   if(!retryable||i===candidates.length-1)break;
+   toast(modelLabel(model)+' недоступна. Пробую резервную модель…');
   }
-  const type=response.headers.get('content-type')||'';
-  if(type.includes('text/event-stream')&&response.body)return await readStream(response,onUpdate);
-  const data=await response.json();const answer=parseResponse(data);if(!answer)throw new Error('ИИ вернул пустой ответ. Попробуй другую модель.');onUpdate(answer);return answer;
  }
- try{return await requestModel(selectedModel)}
- catch(error){
-  if(error.name==='AbortError')throw error;
-  const detail=String(error.detail||error.message||'');
-  const needsPaid=/not enough credits|insufficient credits|paid balance|low balance|top.?up|balance required/i.test(detail);
-  const safeFallbacks=['openai/gpt-5.4','deepseek/deepseek-v4-flash'].filter(m=>m!==selectedModel);
-  if(!needsPaid||!safeFallbacks.length)throw error;
-  let lastError=error;
-  for(const fallback of safeFallbacks){
-   try{
-    toast(`${modelLabel(selectedModel)} требует платный баланс. Пробую ${modelLabel(fallback)}…`);
-    const answer=await requestModel(fallback);
-    toast(`Готово: ответ получен через ${modelLabel(fallback)}. Для ${modelLabel(selectedModel)} нужен платный баланс.`);
-    return answer;
-   }catch(nextError){if(nextError.name==='AbortError')throw nextError;lastError=nextError;}
-  }
-  throw new Error('Выбранная модель требует платный баланс, а резервные модели тоже не ответили. '+(lastError.message||''));
- }
+ throw lastError||new Error('Не удалось получить ответ от API.');
 }
-function modelLabel(id){return ({'openai/gpt-5.4':'GPT-5.4','qwen/qwen3-coder-30b-a3b-instruct':'Qwen Coder','anthropic/claude-sonnet-4.6':'Claude Sonnet','google/gemini-3.7-flash':'Gemini Flash','deepseek/deepseek-v4-flash':'DeepSeek'})[id]||id}
+async function loadModelCatalog(){
+ const select=$('#model'),previous=select.value;
+ try{
+  const response=await fetch('https://gen.pollinations.ai/v1/models',{headers:{'Accept':'application/json'},cache:'no-store'});
+  if(!response.ok)throw new Error('Каталог моделей недоступен');
+  const payload=await response.json(),list=Array.isArray(payload)?payload:(payload.data||payload.models||[]);
+  const models=list.filter(m=>m.id||m.name).filter(m=>!Array.isArray(m.supported_endpoints)||m.supported_endpoints.includes('/v1/chat/completions')||m.supported_endpoints.includes('chat.completions'));
+  if(!models.length)throw new Error('Пустой каталог');
+  const preferred=['openai/gpt-5.4-nano','deepseek/deepseek-v4-flash','qwen/qwen3-coder-30b-a3b-instruct','google/gemini-3.7-flash','openai/gpt-5.4'];
+  const map=new Map(models.map(m=>[m.id||m.name,m]));
+  const ordered=[...preferred.filter(id=>map.has(id)).map(id=>map.get(id)),...models.filter(m=>!preferred.includes(m.id||m.name))];
+  const frag=document.createDocumentFragment();
+  for(const m of ordered){const o=document.createElement('option'),id=m.id||m.name;o.value=id;o.textContent=(m.publisher?m.publisher+' · ':'')+(m.name&&m.name!==id?m.name:id);o.title=m.description||id;frag.append(o)}
+  select.replaceChildren(frag);
+  if([...select.options].some(o=>o.value===previous))select.value=previous;
+  else if([...select.options].some(o=>o.value==='openai/gpt-5.4-nano'))select.value='openai/gpt-5.4-nano';
+  setStatus('каталог моделей обновлён',true);
+ }catch(e){console.warn('Каталог моделей:',e);setStatus('локальный список моделей',false)}
+}
+function modelLabel(id){return ({'openai/gpt-5.4-nano':'GPT-5.4 Nano','openai/gpt-5.4':'GPT-5.4','qwen/qwen3-coder-30b-a3b-instruct':'Qwen Coder','anthropic/claude-sonnet-4.6':'Claude Sonnet','google/gemini-3.7-flash':'Gemini Flash','deepseek/deepseek-v4-flash':'DeepSeek V4 Flash'})[id]||id}
 function fileToDataURL(file){return new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=()=>reject(new Error('Не удалось прочитать изображение'));r.readAsDataURL(file)})}
 function setBusy(value){busy=value;sendBtn.textContent=value?'■':'➤';sendBtn.title=value?'Остановить':'Отправить';$('#model').disabled=value;$('#newChat').disabled=false;setStatus(value?'думаю…':'готов',!value)}
 function codeBlocks(text){const out=[];const re=/```([^\n`]*)\n?([\s\S]*?)```/g;let m;while((m=re.exec(text)))out.push({lang:(m[1]||'').trim().toLowerCase(),code:m[2].replace(/\n$/,'')});return out}
@@ -207,7 +241,7 @@ async function sendMessage(text){
  }catch(error){
   attachments=[];
   if(error.name==='AbortError'){if(answer){wait.innerHTML=renderMarkdown(answer);history.push({role:'assistant',content:answer})}else wait.remove()}
-  else{wait.classList.add('error');wait.innerHTML='<strong>Не удалось получить ответ</strong><p>'+escapeHTML(error.message||'Неизвестная ошибка')+'</p><p style="font-size:11px;color:var(--muted)">Проверь API-ключ, выбранную модель и подключение к интернету.</p><button class="btn small" id="retryLast">Повторить</button>';$('#retryLast').onclick=()=>{wait.remove();history.pop();sendMessage(text)}}
+  else{wait.classList.add('error');wait.innerHTML='<strong>Не удалось получить ответ</strong><p>'+escapeHTML(error.message||'Неизвестная ошибка')+'</p><p style="font-size:11px;color:var(--muted)">Проверь API-ключ, выбранную модель и подключение к интернету.</p><button class="btn small" id="retryLast">Повторить</button>';$('#retryLast').onclick=()=>{wait.remove();if(history[history.length-1]?.role==='user')history.pop();promptBox.value=text;sendMessage(text)}}
  }finally{attachments=[];setBusy(false);controller=null;renderAttachments()}
 }
 async function continueAnswer(element){
