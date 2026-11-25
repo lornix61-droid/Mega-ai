@@ -134,7 +134,7 @@ a,button{ -webkit-tap-highlight-color:transparent}
 <div class="panel sidebox"><h3 class="side-title">Подсказка</h3><div class="mini-tip">Опиши <strong>цель, аудиторию, стиль и функции</strong>. Чем конкретнее запрос — тем полезнее результат.</div></div>
 </aside>
 <section class="panel chat">
-<div class="chat-head"><span class="statusdot"></span><strong>Mega.AI Studio</strong><span class="status" id="status">Бесплатный режим активен</span><div class="head-right"><select class="select" id="model" aria-label="Модель"><option value="openai/gpt-4o-mini">GPT-4o mini</option><option value="deepseek/deepseek-chat">DeepSeek Chat</option><option value="qwen/qwen-2.5-coder-32b-instruct">Qwen Coder</option><option value="google/gemini-2.0-flash">Gemini Flash</option></select><button class="btn small" id="newChat">＋ Новый чат</button></div></div>
+<div class="chat-head"><span class="statusdot"></span><strong>Mega.AI Studio</strong><span class="status" id="status">Бесплатный режим активен</span><div class="head-right"><select class="select" id="model" aria-label="Модель"><option value="gemini-3.8-flash">Gemini 3.8 Flash</option><option value="gemini-3.5-flash-lite">Gemini 3.5 Flash-Lite</option></select><button class="btn small" id="newChat">＋ Новый чат</button></div></div>
 <div class="modes" id="modes"><button class="mode active" data-mode="general">✦ Общий</button><button class="mode" data-mode="website">▧ Сайты</button><button class="mode" data-mode="code">⌘ Код</button><button class="mode" data-mode="study">✎ Учёба</button><button class="mode" data-mode="creative">✧ Креатив</button></div>
 <div id="messages" aria-live="polite"><div class="welcome" id="welcome"><div class="welcome-mark">✦</div><h2>Что создадим сегодня?</h2><p>Я помогу превратить идею в проект. Попробуй бесплатный конструктор сайтов или подключи API, чтобы общаться с внешней ИИ-моделью.</p><div class="suggestions"><button class="suggestion">▧ Создай стильный сайт для кофейни</button><button class="suggestion">⌘ Напиши игру «Змейка» на JavaScript</button><button class="suggestion">✎ Объясни JavaScript с нуля на примерах</button><button class="suggestion">✧ Придумай название и стиль для бренда</button></div></div></div>
 <div class="attachments" id="attachments"></div>
@@ -174,10 +174,10 @@ a,button{ -webkit-tap-highlight-color:transparent}
 <footer><div class="footer-inner"><span>© 2026 Mega.AI · Независимый AI workspace</span><div class="footer-links"><a href="#faq">FAQ</a><a href="#legal">Условия</a><a href="#legal">Конфиденциальность</a><a href="#studio">К началу ↑</a></div></div></footer>
 
 <div class="modal" id="settings"><div class="dialog"><div class="dialog-head"><b>⚙ Подключение ИИ</b><button class="btn small" data-close="settings">✕</button></div><div class="dialog-body">
-<p style="font-size:12px;color:var(--muted);margin-top:0">Локальный конструктор сайтов работает бесплатно и без ключа. Чтобы использовать внешнюю языковую модель, укажи совместимый OpenAI API endpoint и свой ключ.</p>
+<p style="font-size:12px;color:var(--muted);margin-top:0">Подключение Google Gemini API. Вставь ключ из Google AI Studio. Адрес API и модель уже настроены для Gemini.</p>
 <label for="apiKey">API-ключ (необязательно)</label><input id="apiKey" type="password" autocomplete="off" placeholder="Вставь свой API-ключ">
-<label for="endpoint">API endpoint</label><input id="endpoint" value="https://api.openai.com/v1/chat/completions" placeholder="https://.../v1/chat/completions">
-<small>Ключ сохраняется только в localStorage этого браузера. Не публикуй страницу с личным ключом. Для публичного сайта обязательно перенеси запросы на серверный proxy. Проверь тарифы и правила провайдера.</small>
+<label for="endpoint">API endpoint (Gemini)</label><input id="endpoint" value="https://generativelanguage.googleapis.com/v1beta/openai/chat/completions" placeholder="Gemini API endpoint">
+<small>Используется OpenAI-compatible endpoint Google Gemini. Ключ хранится только в localStorage этого браузера. Не публикуй страницу с личным ключом: для публичного сайта нужен серверный proxy. Бесплатный тариф Google имеет ограничения.</small>
 <div class="dialog-actions"><button class="btn" id="clearKey">Удалить ключ</button><button class="btn" data-close="settings">Отмена</button><button class="btn primary" id="saveSettings">Сохранить</button></div>
 </div></div></div>
 <div class="modal" id="preview"><div class="dialog preview-dialog"><div class="dialog-head"><b>▧ Предпросмотр сайта</b><button class="btn small" id="mobilePreview">📱 Мобильный вид</button><button class="btn small" id="downloadSite">↓ Скачать HTML</button><button class="btn small" data-close="preview">✕</button></div><div class="preview-frame" id="previewFrame"><iframe id="frame" title="Предпросмотр созданного сайта" sandbox="allow-scripts allow-forms allow-modals allow-popups"></iframe></div></div></div>
@@ -187,12 +187,16 @@ a,button{ -webkit-tap-highlight-color:transparent}
 (()=>{
 'use strict';
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
-const API_DEFAULT='https://api.openai.com/v1/chat/completions';
+const API_DEFAULT='https://generativelanguage.googleapis.com/v1beta/openai/chat/completions';
 const modes={general:'Общий режим',website:'Создание сайтов',code:'Помощник по коду',study:'Учёба',creative:'Креатив'};
 const system=`Ты — Mega.AI, универсальный помощник и опытный full-stack разработчик. Отвечай на языке пользователя. Давай конкретные, законченные результаты. Для кода указывай запуск, зависимости и полный код изменённых файлов. Не выдумывай тесты. Для сайтов продумывай UX, уникальный дизайн, адаптивность, доступность и рабочие интерактивные элементы. Если просят сайт без уточнения стека — верни один самодостаточный index.html в блоке \`\`\`html. Не используй TODO и пропуски.`;
 let mode='general',history=[],busy=false,controller=null,lastSite='',attachments=[];
 let apiKey=localStorage.getItem('mega_key')||'',endpoint=localStorage.getItem('mega_endpoint')||API_DEFAULT;
+// Миграция старой конфигурации: предыдущая версия по умолчанию отправляла запросы в OpenAI.
+if(/api\.openai\.com/i.test(endpoint)){endpoint=API_DEFAULT;localStorage.setItem('mega_endpoint',endpoint)}
 $('#endpoint').value=endpoint;
+$('#model').value=localStorage.getItem('mega_model')||'gemini-3.8-flash';
+$('#model').addEventListener('change',()=>localStorage.setItem('mega_model',$('#model').value));
 function toast(s){let t=$('#toast');t.textContent=s;t.classList.add('show');clearTimeout(toast.timer);toast.timer=setTimeout(()=>t.classList.remove('show'),2600)}
 function safe(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function openModal(id){$('#'+id).classList.add('open')}
